@@ -1,5 +1,18 @@
 const con = require('../database/conexao');
 
+function getUser() {
+    return new Promise((resolve, reject) => {
+        const query = 'SELECT * FROM usuario';
+        con.execute(query, (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+}
+
 function cadastrarUsuario(usuario) {
     return new Promise((resolve, reject) => {
         const query = 'INSERT INTO usuario (nomeUsuario, sexoUsuario, pesoUsuario, alturaUsuario, objetivoUsuario) VALUES (?, ?, ?, ?, ?)';
@@ -42,6 +55,7 @@ function atualizarUsuario(id, novosDados) {
 }
 
 module.exports = {
+    getUser,
     cadastrarUsuario,
     deletarUsuario,
     atualizarUsuario

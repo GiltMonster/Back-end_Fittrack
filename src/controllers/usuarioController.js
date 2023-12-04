@@ -1,20 +1,17 @@
 const usuarioModel = require('../models/usuarioModel');
-const con = require('../database/conexao');
+
+async function teste(req, res) {
+    console.log('Teste de rota');
+    return res.status(200).send('Teste de rota de usuario acessado com sucesso');
+}
 
 async function getUser(req, res) {
     try {
-        const query = 'SELECT * FROM usuario';
-        con.execute(query, (err, results) => {
-            if (err) {
-                console.error('Erro ao obter usuários:', error);
-                res.status(500).send('Erro interno do servidor');
-            } else {
-                res.status(200).json(results);
-            }
-        });
+        const resultado = await usuarioModel.getUser();
+        return res.status(200).json(resultado);
     } catch (error) {
-        console.error('Erro ao obter usuários:', error);
-        res.status(500).send('Erro interno do servidor');
+        console.error('Erro ao inserir novo usuário:', error);
+        return res.status(500).send('Erro interno do servidor');
     }
 }
 
@@ -75,6 +72,7 @@ async function atualizarUsuario(req, res) {
 }
 
 module.exports = {
+    teste,
     getUser,
     cadastrarUsuario,
     deletarUsuario,
