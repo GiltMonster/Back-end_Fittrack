@@ -2,7 +2,7 @@ const con = require('../database/conexao');
 
 function getExercicio() {
     return new Promise((resolve, reject) => {
-        const query = 'SELECT * FROM exercicio';
+        const query = 'SELECT * FROM Exercicio';
         con.execute(query, (err, results) => {
             if (err) {
                 reject(err);
@@ -15,7 +15,7 @@ function getExercicio() {
 
 function cadastrarExercicio(exercicio) {
     return new Promise((resolve, reject) => {
-        const query = 'INSERT INTO exercicio (Treino_idTreino, repeticoesExercicio, serieExercicio, nomeExercicio, cargaExercicio) VALUES (?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO Exercicio (Treino_idTreino, repeticoesExercicio, serieExercicio, nomeExercicio, cargaExercicio) VALUES (?, ?, ?, ?, ?)';
         con.execute(query, [exercicio.idTreino, exercicio.repeticoes, exercicio.serie, exercicio.nome, exercicio.carga], (err, results) => {
             if (err) {
                 reject(err);
@@ -28,7 +28,7 @@ function cadastrarExercicio(exercicio) {
 
 function deletarExercicio(id) {
     return new Promise((resolve, reject) => {
-        const query = 'DELETE FROM exercicio WHERE idExercicio = ?';
+        const query = 'DELETE FROM Exercicio WHERE idExercicio = ?';
         con.execute(query, [id], (err, results) => {
             if (err) {
                 reject(err);
@@ -43,7 +43,7 @@ function deletarExercicio(id) {
 function atualizarExercicio(id, novosDados) {
     
     return new Promise((resolve, reject) => {
-        const query = 'UPDATE exercicio SET Treino_idTreino = ?, repeticoesExercicio = ?, serieExercicio = ?, nomeExercicio = ?, cargaExercicio = ? WHERE idExercicio = ?';
+        const query = 'UPDATE Exercicio SET Treino_idTreino = ?, repeticoesExercicio = ?, serieExercicio = ?, nomeExercicio = ?, cargaExercicio = ? WHERE idExercicio = ?';
         con.execute(query, [novosDados.idTreino, novosDados.repeticoes, novosDados.serie, novosDados.nome, novosDados.carga, id], (err, results) => {
             if (err) {
                 reject(err);

@@ -2,7 +2,7 @@ const con = require('../database/conexao');
 
 function getDescricaoExercicio() {
     return new Promise((resolve, reject) => {
-        const query = 'SELECT * FROM descricaoexercicio';
+        const query = 'SELECT * FROM descricaoExercicio';
         con.execute(query, (err, results) => {
             if (err) {
                 reject(err);
@@ -15,7 +15,7 @@ function getDescricaoExercicio() {
 
 function cadastrarDescricaoExercicio(descricaoExercicio) {
     return new Promise((resolve, reject) => {
-        const query = 'INSERT INTO descricaoexercicio ( Exercicio_idExercicio, Exercicio_Treino_idTreino, descricaoExercicio ) VALUES (?, ?, ?)';
+        const query = 'INSERT INTO descricaoExercicio ( Exercicio_idExercicio, Exercicio_Treino_idTreino, descricaoExercicio ) VALUES (?, ?, ?)';
         con.execute(query, [descricaoExercicio.idExercicio, descricaoExercicio.idTreino, descricaoExercicio.descricao], (err, results) => {
             if (err) {
                 reject(err);
@@ -28,7 +28,7 @@ function cadastrarDescricaoExercicio(descricaoExercicio) {
 
 function deletarDescricaoExercicio(id) {
     return new Promise((resolve, reject) => {
-        const query = 'DELETE FROM descricaoexercicio WHERE idDescricaoExercicio = ?';
+        const query = 'DELETE FROM descricaoExercicio WHERE idDescricaoExercicio = ?';
         con.execute(query, [id], (err, results) => {
             if (err) {
                 reject(err);
@@ -42,7 +42,7 @@ function deletarDescricaoExercicio(id) {
 
 function atualizarDescricaoExercicio(id, novosDados) {
     return new Promise((resolve, reject) => {
-        const query = 'UPDATE descricaoexercicio SET Exercicio_idExercicio = ?, Exercicio_Treino_idTreino = ?, descricaoExercicio = ? WHERE idDescricaoExercicio = ?';
+        const query = 'UPDATE descricaoExercicio SET Exercicio_idExercicio = ?, Exercicio_Treino_idTreino = ?, descricaoExercicio = ? WHERE idDescricaoExercicio = ?';
         con.execute(query, [novosDados.idExercicio, novosDados.idTreino, novosDados.descricao, id], (err, results) => {
             if (err) {
                 reject(err);
