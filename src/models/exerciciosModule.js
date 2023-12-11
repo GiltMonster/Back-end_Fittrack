@@ -13,6 +13,19 @@ function getExercicio() {
     });
 }
 
+function getExerciciosPeloTreino(id) {
+    return new Promise((resolve, reject) => {
+        const query = 'SELECT * FROM Exercicio WHERE Exercicio.Treino_idTreino = ?';
+        con.execute(query, [id], (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+}
+
 function cadastrarExercicio(exercicio) {
     return new Promise((resolve, reject) => {
         const query = 'INSERT INTO Exercicio (Treino_idTreino, repeticoesExercicio, serieExercicio, nomeExercicio, cargaExercicio) VALUES (?, ?, ?, ?, ?)';
@@ -56,6 +69,7 @@ function atualizarExercicio(id, novosDados) {
 
 module.exports = {
     getExercicio,
+    getExerciciosPeloTreino,
     cadastrarExercicio,
     deletarExercicio,
     atualizarExercicio
