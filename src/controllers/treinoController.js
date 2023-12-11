@@ -11,7 +11,7 @@ async function getTreino(req, res) {
         return res.status(200).json(resultado);
     } catch (error) {
         console.error('Erro ao inserir novo treino:', error);
-       return res.status(500).send('Erro interno do servidor');
+       return res.status(500).send({result: 'Erro interno do servidor'});
     }
  }
 
@@ -20,17 +20,17 @@ async function cadastraTreino(req, res) {
     console.log('Treino:', treino)
 
     if (!treino.idUsuario || !treino.data || !treino.duracao || !treino.nome || !treino.categoria) {
-        return res.status(400).send('Todos os campos são obrigatórios');
+        return res.status(400).send({result: 'Todos os campos são obrigatórios'});
     } else {
 
         try {
             const resultado = await treinoModel.cadastraTreino(treino)
-            console.log('Novo treino inserido com sucesso. ID:', resultado.insertId);
-            res.status(201).send('Treino inserido com sucesso');
+            console.log({result:'Novo treino inserido com sucesso. ID:'+ resultado.insertId});
+            res.status(201).send({result:'Treino inserido com sucesso'});
 
         } catch (error) {
             console.error('Erro ao inserir novo treino:', error);
-            res.status(500).send('Erro interno do servidor');
+            res.status(500).send({result:'Erro interno do servidor'});
         }
     }
 }
