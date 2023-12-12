@@ -32,14 +32,14 @@ async function cadastrarExercicio(req, res) {
 
     // Validação dos campos obrigatórios
     if (!exercicio.idTreino || !exercicio.repeticoes || !exercicio.serie || !exercicio.nome || !exercicio.carga) {
-        res.status(400).send('Todos os campos são obrigatórios');
+        res.status(400).send({result:'Todos os campos são obrigatórios'});
         return;
     }
 
     try {
         const resultado = await exercicioController.cadastrarExercicio(exercicio);
         console.log('Novo exercicio inserido com sucesso. ID:', resultado.insertId);
-        res.status(201).send('Exercicio inserido com sucesso');
+        return res.status(200).json(resultado);
     } catch (error) {
         console.error('Erro ao inserir novo exercicio:', error);
         res.status(500).send({result: 'Erro interno do servidor'});

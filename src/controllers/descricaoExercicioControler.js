@@ -11,7 +11,7 @@ async function getDescricaoExercicio(req, res) {
         return res.status(200).json(resultado);
     } catch (error) {
         console.error('Erro ao inserir novo descricaoExercicio:', error);
-        return res.status(500).send('Erro interno do servidor');
+        return res.status(500).send({result:'Erro interno do servidor'});
     }
 }
 
@@ -30,7 +30,7 @@ async function cadastrarDescricaoExercicio(req, res) {
         res.status(201).send('DescricaoExercicio inserido com sucesso');
     } catch (error) {
         console.error('Erro ao inserir novo descricaoExercicio:', error);
-        res.status(500).send('Erro interno do servidor');
+        res.status(500).send({result:'Erro interno do servidor'});
     }
 }
 
@@ -48,7 +48,7 @@ async function deletarDescricaoExercicio(req, res) {
         res.status(201).send('DescricaoExercicio deletado com sucesso');
     } catch (error) {
         console.error('Erro ao deletar descricaoExercicio:', error);
-        res.status(500).send('Erro interno do servidor');
+        res.status(500).send({result:'Erro interno do servidor'});
     }
 }
 
@@ -67,7 +67,7 @@ async function atualizarDescricaoExercicio(req, res) {
         res.status(201).send('DescricaoExercicio atualizado com sucesso');
     } catch (error) {
         console.error('Erro ao atualizar descricaoExercicio:', error);
-        res.status(500).send('Erro interno do servidor');
+        res.status(500).send({result:'Erro interno do servidor'});
     }
 }
 

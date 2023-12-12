@@ -44,7 +44,7 @@ async function deletarTreino(req, res) {
         return res.status(200).send('Treino deletado com sucesso');
     } catch (error) {
         console.error('Erro ao deletar treino:', error);
-        return res.status(500).send('Erro interno do servidor');
+        return res.status(500).send({result: 'Erro interno do servidor'});
     }
 }
 
@@ -55,10 +55,10 @@ async function atualizarTreino(req, res) {
     try{
         const resultado = await treinoModel.uptadeTreino(novosDados, id);
         console.log('Treino atualizado com sucesso. Linhas afetadas:', resultado.affectedRows);
-        return res.status(200).send('Treino atualizado com sucesso'); 
+        res.status(201).send({result:'Treino inserido com sucesso'});
     }catch(error){
         console.error('Erro ao atualizar treino:', error);
-        return res.status(500).send('Erro interno do servidor');
+        return res.status(500).send({result: 'Erro interno do servidor'});
     }
 }
 

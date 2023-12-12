@@ -2,7 +2,7 @@ const con = require('../database/conexao');
 
 function getUser() {
     return new Promise((resolve, reject) => {
-        const query = 'SELECT * FROM Usuario';
+        const query = 'SELECT * FROM Usuario LIMIT 1';
         con.execute(query, (err, results) => {
             if (err) {
                 reject(err);
