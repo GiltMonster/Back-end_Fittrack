@@ -74,7 +74,7 @@ async function atualizarExercicio(req, res) {
 
     try {
         const resultado = await exercicioController.atualizarExercicio(id, novosDados);
-        res.status(201).send('Exercicio atualizado com sucesso');
+        res.status(201).send({result:'Exercicio atualizado com sucesso'});
     } catch (error) {
         console.error('Erro ao atualizar exercicio:', error);
         res.status(500).send({result: 'Erro interno do servidor'});

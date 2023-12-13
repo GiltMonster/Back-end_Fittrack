@@ -27,10 +27,10 @@ async function cadastrarUsuario(req, res) {
     try {
         const resultado = await usuarioModel.cadastrarUsuario(usuario);
         console.log('Novo usuário inserido com sucesso. ID:', resultado.insertId);
-        res.status(201).send('Usuário inserido com sucesso');
+        res.status(201).send({result:'Usuário inserido com sucesso'});
     } catch (error) {
         console.error('Erro ao inserir novo usuário:', error);
-        res.status(500).send('Erro interno do servidor');
+        res.status(500).send({result:'Erro interno do servidor'});
     }
 }
 

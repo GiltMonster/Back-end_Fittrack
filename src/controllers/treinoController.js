@@ -41,7 +41,7 @@ async function deletarTreino(req, res) {
     try {
         const resultado = await treinoModel.deletarTreino(id);
         console.log("Treino deletado com sucesso. Linhas afetadas:", resultado.affectedRows, "ID:", id);
-        return res.status(200).send('Treino deletado com sucesso');
+        return res.status(200).send({result:'Treino deletado com sucesso'});
     } catch (error) {
         console.error('Erro ao deletar treino:', error);
         return res.status(500).send({result: 'Erro interno do servidor'});
